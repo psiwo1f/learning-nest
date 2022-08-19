@@ -59,3 +59,16 @@ $ npx prisma studio
  - postgres (RDBMS)
  - prisma (ORM)
  - argon (hashing)
+ - jest
+ - pactum (e2e testing)
+
+
+ ## Notes
+ - created a hook to run before another command e.g.
+
+ ```
+ // package.json
+ "pretest:e2e": "yarn db:test:restart",
+ ```
+
+ - from prisma use `$transaction` to run queries in order. See `cleanDb()` method in prisma.service.ts
