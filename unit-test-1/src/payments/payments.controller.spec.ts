@@ -1,9 +1,13 @@
+import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Request, Response } from 'express';
 import { PaymentsController } from './payments.controller';
+import { PaymentsService } from './payments.service';
 
 describe('PaymentsController', () => {
   let controller: PaymentsController;
+  let paymentService: PaymentsService
+
   const reqMock = {
     query: {},
   } as unknown as Request
@@ -25,14 +29,27 @@ describe('PaymentsController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [PaymentsController],
+      providers: [
+        {
+          provide: 'PAYMENTS_SERVICE',
+          useValue: {
+            createPayment: jest.fn(x => x)
+          }
+        }
+      ]
     }).compile();
 
     controller = module.get<PaymentsController>(PaymentsController);
+    paymentService = module.get<PaymentsService>('PAYMENTS_SERVICE')
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  it('payment service should be defined', () => {
+    expect(paymentService).toBeDefined();
+  })
 
   describe('allpayments', () => {
     it('should return 400 status without query params', () => {
@@ -49,4 +66,19 @@ describe('PaymentsController', () => {
       expect(respMock.send).toHaveBeenCalledWith(200)
     })
   })
+
+  describe('createPayment', () => {
+    // it('should create payment', async () => {
+    //   const resp = await controller.createPayment({email: 't1@em.com', price: 40})
+    //   expect(resp).toStrictEqual({status: 'success'})
+    // })
+
+    // below is useless test, not doing anything meaningful
+    it('should throw an error', () => {
+      jest.spyOn(paymentService, 'createPayment').mockImplementationOnce(() => {
+        throw new BadRequestException()
+      })
+    })
+  })
+
 });
