@@ -13,6 +13,7 @@ A microservices based NestJs app with RabbitMQ, Mongo & Docker
 ## Tools
 - mongoose
 - joi
+- RabbitMQ
 
 ## Steps
 - create a nest app
@@ -56,3 +57,7 @@ replica set to use database transaction functionality
 
 - after setting up docker-compose and Dockerfile
 $ docker-compose up --build -V
+
+
+## Notes
+- about acknowledgement at 56:00
