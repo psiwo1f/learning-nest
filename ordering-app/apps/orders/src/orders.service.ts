@@ -12,7 +12,7 @@ export class OrdersService {
     return 'Hello World!';
   }
 
-  async createOrder(dto: CreateOrderDto) {
+  async createOrder(dto: CreateOrderDto, authentication: string) {
     // return this.orderRepository.create(dto)
     const session = await this.orderRepository.startTransaction()
     try {
@@ -20,6 +20,7 @@ export class OrdersService {
       await lastValueFrom(
         this.billingClient.emit('order_created', {
           dto,
+          Authentication: authentication
         })
       )
       session.commitTransaction()
