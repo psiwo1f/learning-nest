@@ -15,11 +15,11 @@ export class OrdersController {
   @Post()
   @UseGuards(JwtAuthGuard)
   async createOrder(@Body() dto: CreateOrderDto, @Req() req: any) {
-    return this.ordersService.createOrder(dto, req.cookies?.Authentication)
+    return this.ordersService.createOrder(dto, req.cookies?.Authentication);
   }
 
   @Get()
   getOrders() {
-    return this.ordersService.getOrders()
+    return this.ordersService.getOrders();
   }
 }

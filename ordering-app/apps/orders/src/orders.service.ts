@@ -7,31 +7,34 @@ import { lastValueFrom } from 'rxjs';
 
 @Injectable()
 export class OrdersService {
-  constructor(private readonly orderRepository: OrdersRepository, @Inject(BILLING_SERVICE) private billingClient: ClientProxy) {}
+  constructor(
+    private readonly orderRepository: OrdersRepository,
+    @Inject(BILLING_SERVICE) private billingClient: ClientProxy,
+  ) {}
   getHello(): string {
     return 'Hello World!';
   }
 
   async createOrder(dto: CreateOrderDto, authentication: string) {
     // return this.orderRepository.create(dto)
-    const session = await this.orderRepository.startTransaction()
+    const session = await this.orderRepository.startTransaction();
     try {
-      const order = this.orderRepository.create(dto, {session})
+      const order = this.orderRepository.create(dto, { session });
       await lastValueFrom(
         this.billingClient.emit('order_created', {
           dto,
-          Authentication: authentication
-        })
-      )
-      session.commitTransaction()
-      return order
+          Authentication: authentication,
+        }),
+      );
+      session.commitTransaction();
+      return order;
     } catch (error) {
-      await session.abortTransaction()
-      throw error
+      await session.abortTransaction();
+      throw error;
     }
   }
 
   getOrders() {
-    return this.orderRepository.find({})
+    return this.orderRepository.find({});
   }
 }
