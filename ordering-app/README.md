@@ -60,4 +60,5 @@ $ docker-compose up --build -V
 
 
 ## Notes
+- course from [YouTube](https://www.youtube.com/watch?v=yuVVKB0EaOQ)
 - about acknowledgement at 56:00
