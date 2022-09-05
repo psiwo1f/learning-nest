@@ -7,4 +7,8 @@ export class AuthorService {
         const result = authors.filter(au => au.id === id)
         return result.length ? result[0] : null
     }
+
+    async find() {
+        return authors
+    }
 }
