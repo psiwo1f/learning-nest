@@ -13,11 +13,13 @@ export class BookResolver {
         return this.bookService.find() // resolve the query
     }
 
+    // @Query(returns => Book, { name: 'book' }) // from nest docs
     @Query(() => Book)
     async book(@Args('input') {id}: FindBookInput) {
         return this.bookService.findById(id)
     }
 
+    // @ResolveField('author', returns => Author) // from nest docs
     @ResolveField(() => Author)
     async author(@Parent() book: Book) {
         return this.authorService.findById(book.author)
