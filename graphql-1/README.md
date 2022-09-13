@@ -21,6 +21,9 @@ $ npm install
 ```bash
 # development
 $ yarn dev
+
+# visit
+http://localhost:3000/graphql
 ```
 
 ## Test
