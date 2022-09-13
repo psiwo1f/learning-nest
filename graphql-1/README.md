@@ -39,8 +39,8 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-# Tut
-https://www.youtube.com/watch?v=bQPk4S_W-pc
+# Tuto
+https://www.youtube.com/playlist?list=PL0iFifR5umcnRCNg58uMGnO7VubiYcNe1
 
 ## Commands History
 some commands used
