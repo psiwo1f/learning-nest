@@ -38,3 +38,28 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+# Tut
+https://www.youtube.com/watch?v=bQPk4S_W-pc
+
+## Commands History
+some commands used
+```
+ 1007  nest new graphql-1
+ 1008  ls
+ 1009  cd graphql-1/
+ 1010  ls
+ 1011  yarn add @nestjs/graphql graphql-tools graphql apollo-server-express
+ 1012  ls
+ 1013  nest g mo author
+ 1014  nest g resolver author 
+ 1015  nest g s author --no-spec
+ 1016  nest g mo book
+ 1017  nest g resolver book
+ 1018  nest g s book --no-spec
+ 1019  touch src/author/author.schema.ts
+ 1020  touch src/book/book.schema.ts
+ 1021  clear
+ 1022  yarn add @nestjs/apollo
+
+```
